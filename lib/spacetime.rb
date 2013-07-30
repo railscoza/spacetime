@@ -13,25 +13,32 @@ class SpaceTime
     end
   end
   
-  def self.for_day(date=Date.today)
-    new(date.midnight, date.tomorrow.midnight)
-  end
-  def self.for_week(date = Date.today)
-    new(date.beginning_of_week.midnight, date.end_of_week.tomorrow.midnight)
-  end
-  def self.for_month(date = Date.today)
-    date = date.to_date
-    new(date.beginning_of_month.midnight, date.at_end_of_month.tomorrow.midnight)
-  end
-  def self.for_current_month
-    for_month
-  end
-  def self.recent_days_upto_datetime_or_now(datetime, num_days)
-    datetime_for_end = [Time.now, datetime].min
-    new(datetime_for_end - num_days.days, datetime_for_end)
+  class << self
+    def for_day(date=Date.today)
+      new(date.midnight, date.tomorrow.midnight)
+    end
+
+    def for_week(date = Date.today)
+      new(date.beginning_of_week.midnight, date.end_of_week.tomorrow.midnight)
+    end
+
+    def for_month(date = Date.today)
+      date = date.to_date
+      new(date.beginning_of_month.midnight, date.at_end_of_month.tomorrow.midnight)
+    end
+
+    def for_current_month
+      for_month
+    end
+    
+    def recent_days_upto_datetime_or_now(datetime, num_days)
+      datetime_for_end = [Time.now, datetime].min
+      new(datetime_for_end - num_days.days, datetime_for_end)
+    end
   end
 
   # Instance methods
+  
   def start
     @start_time
   end
