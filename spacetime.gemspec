@@ -10,7 +10,7 @@ Gem::Specification.new do |spec|
   spec.email         = ["francois@rails.co.za"]
   spec.description   = %q{Handy object for dealing with time spans}
   spec.summary       = %q{For use in finders, comparisons, and generally seeing if an instant falls within a timespan.}
-  spec.homepage      = ""
+  spec.homepage      = "https://github.com/railscoza/spacetime"
   spec.license       = "MIT"
 
   spec.files         = `git ls-files`.split($/)
